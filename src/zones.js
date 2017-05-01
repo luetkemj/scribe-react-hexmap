@@ -27,7 +27,7 @@ export function copyClosestZone(map, seeds, key, zoneKey) {
     const zonedHex = hex;
 
     // console.log(zonedHex);
-    console.log(seed);
+    // console.log(seed);
 
     zonedHex[key] = seed[key];
     zonedHex[zoneKey] = seed[zoneKey];

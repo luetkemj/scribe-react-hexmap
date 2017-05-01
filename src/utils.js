@@ -1,4 +1,4 @@
-import { cloneDeep, each, find } from 'lodash';
+import { cloneDeep, each, find, some } from 'lodash';
 import { HexUtils } from 'react-hexgrid';
 
 export function neighbours(hex) {
@@ -12,16 +12,31 @@ export function neighbours(hex) {
 
 export function generateCoasts(map) {
   const coastalMap = cloneDeep(map);
+  const blackList = [];
 
   each(coastalMap, (hex) => {
-    const neighbors = neighbours(hex);
+    // check if terrainKey is blacklisted
+    // console.log(blackList);
+    // console.log(hex.terrainKey);
+    if (some(blackList, o => o === hex.terrainKey)) {
+      // console.log('blacklisted');
+      // terrainKey is blacklisted
+      // set hex to water
+      return hex.terrain = 'water'; // eslint-disable-line
+    } else {
+      const neighbors = neighbours(hex);
 
-    each(neighbors, (neighbor) => {
-      if (!find(coastalMap, neighbor)) {
-        // we are at a map edge!
-        // hex.terrainKey = 'water';
-      }
-    });
+      return each(neighbors, (neighbor) => {
+        if (!find(coastalMap, neighbor)) {
+          // we are at a map edge!
+
+          /* eslint-disable no-param-reassign */
+          hex.terrain = 'water';
+
+          blackList.push(hex.terrainKey);
+        }
+      });
+    }
   });
 
   return coastalMap;
