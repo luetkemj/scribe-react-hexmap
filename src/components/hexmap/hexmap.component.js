@@ -1,5 +1,5 @@
 import React from 'react';
-import { HexGrid, Layout, Hexagon, GridGenerator, HexUtils, Pattern } from 'react-hexgrid';
+import { HexGrid, Layout, Hexagon, GridGenerator, HexUtils } from 'react-hexgrid';
 import { generateZones } from '../../zones';
 // import { generateCoasts } from '../../utils';
 import './hexmap.component.scss';
@@ -17,9 +17,13 @@ export default function HexMap() {
   const generator = GridGenerator.getGenerator(config.map);
   const hexagons = generator.apply(this, config.mapProps);
 
-  const terrains = ['hills', 'mountains', 'forest', 'plains', 'swamp', 'desert', 'coast'];
+  const terrains = ['hills', 'mountains', 'forest', 'plains', 'swamp', 'desert'];
 
-  const hexMap = generateZones(hexagons, terrains, 'terrain', 10);
+  let hexMap;
+  hexMap = generateZones(hexagons, terrains, 'terrain', 10);
+  // hexMap = generateCoasts(hexMap);
+
+  // console.log(hexMap);
 
   const layout = config.layout;
   const size = { x: layout.width, y: layout.height };
@@ -29,8 +33,9 @@ export default function HexMap() {
       <Layout size={size} flat={layout.flat} spacing={layout.spacing} origin={config.origin}>
         {
           hexMap.map(hex => (
+          // hexagons.map(hex => (
             <Hexagon
-              className={`hex ${hex.props.terrain} ${hex.props.kingdom}`}
+              className={`hex ${hex.terrain}`}
               key={HexUtils.getID(hex)}
               q={hex.q}
               r={hex.r}
@@ -39,7 +44,6 @@ export default function HexMap() {
           ))
         }
       </Layout>
-      <Pattern id="pat-1" link="http://inkwellideas.com/wp-content/uploads/2010/04/palace.png" size={size} />
     </HexGrid>
   );
 }

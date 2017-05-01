@@ -4662,8 +4662,8 @@ react-fuzzy@^0.3.3:
     fuse.js "^2.2.0"
 
 react-hexgrid@^1.0.0-rc1:
-  version "1.0.0-rc1"
-  resolved "https://registry.yarnpkg.com/react-hexgrid/-/react-hexgrid-1.0.0-rc1.tgz#9491b0a793ed584cc3f69ce8f301c76f0adef848"
+  version "1.0.0-rc3"
+  resolved "https://registry.yarnpkg.com/react-hexgrid/-/react-hexgrid-1.0.0-rc3.tgz#07d8e67a7012e3e4b3fd308e34b3be089c30d6e4"
   dependencies:
     classnames "^2.2.5"
 

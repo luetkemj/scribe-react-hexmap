@@ -2,22 +2,23 @@ import { assign, cloneDeep, each, find, orderBy, sample, shuffle } from 'lodash'
 import { HexUtils } from 'react-hexgrid';
 
 export function seedMap(map, zones, seeds, key, zoneKey) {
-  // randomly assign zones to seeds
   return each(seeds, (seed, index) => {
     const hex = find(map, seed);
-    hex.props[zoneKey] = index;
-    hex.props[key] = sample(zones);
+    hex[zoneKey] = index;
+    hex[key] = sample(zones);
 
     return hex;
   });
 }
 
 export function copyClosestZone(map, seeds, key, zoneKey) {
+  // console.log(seeds);
+  // console.log(zoneKey);
   return each(map, (hex) => {
     const distances = seeds.map(s => ({
       distance: HexUtils.distance(hex, s),
-      zone: s.props[key],
-      [zoneKey]: s.props[zoneKey],
+      [key]: s[key],
+      [zoneKey]: s[zoneKey],
     }));
 
     // order the distances by distance and grab the closest one as our seed
@@ -25,8 +26,11 @@ export function copyClosestZone(map, seeds, key, zoneKey) {
 
     const zonedHex = hex;
 
-    zonedHex.props[key] = seed.zone;
-    zonedHex.props[zoneKey] = seed[zoneKey];
+    // console.log(zonedHex);
+    console.log(seed);
+
+    zonedHex[key] = seed[key];
+    zonedHex[zoneKey] = seed[zoneKey];
     return zonedHex;
   });
 }
@@ -49,7 +53,7 @@ export function generateZones(map, zones, key, density) {
   zonedMap = copyClosestZone(zonedMap, zonedSeeds, key, zoneKey);
 
 
-  zonedMap.map(hex => assign(hex.props, {
+  zonedMap.map(hex => assign(hex, {
     id: HexUtils.getID(hex),
   }));
 
