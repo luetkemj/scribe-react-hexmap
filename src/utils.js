@@ -14,29 +14,34 @@ export function generateCoasts(map) {
   const coastalMap = cloneDeep(map);
   const blackList = [];
 
+  // first pass
   each(coastalMap, (hex) => {
     // check if terrainKey is blacklisted
-    // console.log(blackList);
-    // console.log(hex.terrainKey);
     if (some(blackList, o => o === hex.terrainKey)) {
-      // console.log('blacklisted');
       // terrainKey is blacklisted
       // set hex to water
       return hex.terrain = 'water'; // eslint-disable-line
-    } else {
-      const neighbors = neighbours(hex);
-
-      return each(neighbors, (neighbor) => {
-        if (!find(coastalMap, neighbor)) {
-          // we are at a map edge!
-
-          /* eslint-disable no-param-reassign */
-          hex.terrain = 'water';
-
-          blackList.push(hex.terrainKey);
-        }
-      });
     }
+    const neighbors = neighbours(hex);
+
+    return each(neighbors, (neighbor) => {
+      if (!find(coastalMap, neighbor)) {
+        // we are at a map edge!
+        /* eslint-disable no-param-reassign */
+        hex.terrain = 'water';
+        blackList.push(hex.terrainKey);
+      }
+    });
+  });
+
+  // second pass
+  // iterate over blacklist removing any hexes missed in the first round
+  each(blackList, (terrainKey) => {
+    each(coastalMap, (hex) => {
+      if (terrainKey === hex.terrainKey) {
+        hex.terrain = 'water';
+      }
+    });
   });
 
   return coastalMap;
