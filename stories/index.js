@@ -1,10 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import Hexmap from '../src/components/hexmap/hexmap.component';
-
-const DATA = require('./data.json');
+import HexmapContainer from '../src/containers/hexmap/hexmap.container';
 
 storiesOf('Hexmap', module)
-  .add('test with title = tile', () => (
-    <Hexmap data={DATA} />
+  .add('Hexmap Container', () => (
+    <HexmapContainer />
   ));
