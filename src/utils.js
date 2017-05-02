@@ -1,7 +1,48 @@
-import * as _ from 'lodash';
+import { cloneDeep, each, find, some } from 'lodash';
 import { HexUtils } from 'react-hexgrid';
 
+export function neighbours(hex) {
+  const array = [];
+  for (let i = 0; i < HexUtils.DIRECTIONS.length; i += 1) {
+    array.push(HexUtils.neighbour(hex, i));
+  }
+
+  return array;
+}
+
 export function generateCoasts(map) {
-  // const coastalMap = _.cloneDeep(map);
-  return map;
+  const coastalMap = cloneDeep(map);
+  const blackList = [];
+
+  // first pass
+  each(coastalMap, (hex) => {
+    // check if terrainKey is blacklisted
+    if (some(blackList, o => o === hex.terrainKey)) {
+      // terrainKey is blacklisted
+      // set hex to water
+      return hex.terrain = 'water'; // eslint-disable-line
+    }
+    const neighbors = neighbours(hex);
+
+    return each(neighbors, (neighbor) => {
+      if (!find(coastalMap, neighbor)) {
+        // we are at a map edge!
+        /* eslint-disable no-param-reassign */
+        hex.terrain = 'water';
+        blackList.push(hex.terrainKey);
+      }
+    });
+  });
+
+  // second pass
+  // iterate over blacklist removing any hexes missed in the first round
+  each(blackList, (terrainKey) => {
+    each(coastalMap, (hex) => {
+      if (terrainKey === hex.terrainKey) {
+        hex.terrain = 'water';
+      }
+    });
+  });
+
+  return coastalMap;
 }

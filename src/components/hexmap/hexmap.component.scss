@@ -1,15 +1,23 @@
+$swatch1: #000;
+
+.hexGrid {
+  background: $swatch1;
+}
+
 .hex {
   transition: stroke-width 100ms ease, stroke 100ms ease;
-  stroke-width: 0;
+  // stroke-width: 0;
+  stroke-width: 0.04px;
 
   &:hover {
     stroke-width: 0.1px;
+    // stroke: #333;
     stroke: #000;
   }
 
   text {
     font-family: 'scribe-terrain';
-    transform: scale(0.07);
+    transform: scale(0.03);
     fill: #000;
   }
 }
@@ -40,4 +48,8 @@
 
 .coast {
   fill: #fff993;
+}
+
+.water {
+  fill: #00659b;
 }
