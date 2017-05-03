@@ -1,16 +1,7 @@
 import { cloneDeep, each, find, some } from 'lodash';
 import { HexUtils } from 'react-hexgrid';
 
-export function neighbours(hex) {
-  const array = [];
-  for (let i = 0; i < HexUtils.DIRECTIONS.length; i += 1) {
-    array.push(HexUtils.neighbour(hex, i));
-  }
-
-  return array;
-}
-
-export function generateCoasts(map) {
+export function generateOceans(map) {
   const coastalMap = cloneDeep(map);
   const blackList = [];
 
@@ -22,7 +13,7 @@ export function generateCoasts(map) {
       // set hex to water
       return hex.terrain = 'water'; // eslint-disable-line
     }
-    const neighbors = neighbours(hex);
+    const neighbors = HexUtils.neighbours(hex);
 
     return each(neighbors, (neighbor) => {
       if (!find(coastalMap, neighbor)) {

@@ -8,7 +8,6 @@ const lodash = require.requireActual('lodash');
 let map;
 let zones;
 let seeds;
-// let zonedSeeds;
 
 beforeEach(() => {
   map = [
@@ -40,11 +39,6 @@ beforeEach(() => {
   ];
   zones = ['hills', 'mountains', 'forest', 'plains', 'swamp', 'desert'];
   seeds = [map[3], map[12], map[20]];
-  // zonedSeeds = [
-  //   { props: { test: 'hills', testKey: 0 }, q: 3, r: 0, s: -3 },
-  //   { props: { test: 'forest', testKey: 1 }, q: 1, r: 2, s: -3 },
-  //   { props: { test: 'swamp', testKey: 2 }, q: -2, r: 4, s: -2 },
-  // ];
 });
 
 test('seedMap should work', () => {
@@ -54,12 +48,8 @@ test('seedMap should work', () => {
     .mockReturnValueOnce('swamp');
 
   expect(zonesLib.seedMap(map, zones, seeds, 'test', 'testKey')).toEqual([
-    { props: { test: 'hills', testKey: 0 }, q: 3, r: 0, s: -3 },
-    { props: { test: 'forest', testKey: 1 }, q: 1, r: 2, s: -3 },
-    { props: { test: 'swamp', testKey: 2 }, q: -2, r: 4, s: -2 },
+    { props: {}, q: 3, r: 0, s: -3, test: 'hills', testKey: 0 },
+    { props: {}, q: 1, r: 2, s: -3, test: 'forest', testKey: 1 },
+    { props: {}, q: -2, r: 4, s: -2, test: 'swamp', testKey: 2 },
   ]);
 });
-
-// test('copyClosestZone should work', () => {
-//   expect(zonesLib.copyClosestZone(map, zonedSeeds, 'test', 'testKey')).toEqual([]);
-// });

@@ -1,6 +1,6 @@
 {
   "name": "scribe-hexmap",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "A Fantasy RPG Hexmap Generator",
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "lodash": "^4.17.4",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-hexgrid": "1.0.0-rc1"
+    "react-hexgrid": "1.0.0-rc4"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",

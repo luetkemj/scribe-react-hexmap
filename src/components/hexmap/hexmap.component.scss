@@ -1,7 +1,8 @@
 $swatch1: #000;
 
-.hexGrid {
+.grid {
   background: $swatch1;
+  margin-left: 200px;
 }
 
 .hex {
@@ -17,7 +18,7 @@ $swatch1: #000;
 
   text {
     font-family: 'scribe-terrain';
-    transform: scale(0.03);
+    transform: scale(0.12);
     fill: #000;
   }
 }
