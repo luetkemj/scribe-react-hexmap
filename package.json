@@ -4,7 +4,7 @@
   "description": "A Fantasy RPG Hexmap component built with React",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luetkemj/scribe-hexmap.git"
+    "url": "https://github.com/luetkemj/scribe-react-hexmap.git"
   },
   "author": "luetkemj",
   "license": {

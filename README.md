@@ -1,6 +1,6 @@
-# Scribe Hexmap [![Build Status](https://travis-ci.org/luetkemj/scribe-hexmap.svg?branch=master)](https://travis-ci.org/luetkemj/scribe-hexmap)
+# Scribe Hexmap
 
-A Fantasy RPG Hexmap Generator
+A Fantasy RPG Hexmap component built with React
 
 ## Getting started
 
@@ -12,4 +12,4 @@ A Fantasy RPG Hexmap Generator
 
 Feature requests, issues, and contributions are all welcome.
 
-[issues](https://github.com/luetkemj/scribe-hexmap/issues/new)
+[issues](https://github.com/luetkemj/scribe-react-hexmap/issues/new)
