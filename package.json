@@ -1,7 +1,7 @@
 {
-  "name": "scribe-hexmap",
-  "version": "0.1.0-alpha",
-  "description": "A Fantasy RPG Hexmap Generator",
+  "name": "@scribe/react-hexmap",
+  "version": "v0.1.0-alpha",
+  "description": "A Fantasy RPG Hexmap component built with React",
   "repository": {
     "type": "git",
     "url": "https://github.com/luetkemj/scribe-hexmap.git"
