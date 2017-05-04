@@ -2,19 +2,68 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <title>Scribe React Hexmap</title>
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="https://unpkg.com/@scribe/react-hexmap@0.1.2-alpha/dist/scribe-react-hexmap.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        padding: 10px 0 5px 15px;
+        margin-bottom: 20px;
+        background: #3F3F3F;
+      }
+
+      .logo {
+        width: 100px;
+        height: auto;
+      }
+
+      .footer {
+        border-top: 1px solid #333;
+        padding-top: 15px;
+        margin-top: 30px;
+      }
+
+      .footer ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+      }
+
+      .github img {
+        width: 50px;
+        height: auto;
+        margin: 0 20px;
+      }
+
+      .npm img{
+        width: 50px;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="header"><img class="logo" src="assets/scribe-logo@2x.png" alt="scribe" /></div>
+    <div id="content"></div>
+    <div class="footer">
+      <ul>
+        <li class="github"><a href="https://github.com/luetkemj/scribe-react-hexmap"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" alt="github"></a></li>
+        <li class="npm"><a href="https://www.npmjs.com/package/@scribe/react-hexmap"><img src="https://raw.githubusercontent.com/npm/logos/master/%22npm%22%20lockup/npm.png" alt="npm" /></a></li>
+      </ul>
+    </div>
     <script type="text/babel">
 
       ReactDOM.render(
         <scribeReactHexmap.HexmapTestContainer />,
-        document.getElementById('root')
+        document.getElementById('content')
       );
 
     </script>
